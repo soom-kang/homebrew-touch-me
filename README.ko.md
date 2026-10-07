@@ -1,3 +1,5 @@
+![touch me for ZEUSLAP](docs/assets/touch-me-title.png)
+
 [English](README.md) · [한국어](README.ko.md) · [Source](https://github.com/soom-kang/touch-me)
 
 # Touch Me Homebrew Tap
