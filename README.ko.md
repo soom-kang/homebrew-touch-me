@@ -4,7 +4,9 @@
 
 # Touch Me Homebrew Tap
 
-Apple Silicon과 macOS 26(Tahoe) 이상에서 Touch Me beta를 설치합니다. USB-C로 연결한 ZEUSLAP P16KT 한 대와 매핑 가능한 외부 화면을 대상으로 합니다. 기본 언어는 영어이며 설정에서 English 또는 한국어를 선택할 수 있습니다.
+Touch Me는 Mac에서 ZEUSLAP 터치 모니터의 입력을 제대로 활용하도록 돕는 메뉴 막대 앱입니다. 이 저장소는 Touch Me beta를 Homebrew로 설치하고 업데이트할 수 있도록 제공하는 개인 Tap으로, 배포 버전·다운로드 주소·파일 검증 정보를 관리합니다.
+
+현재 beta는 Apple Silicon Mac과 macOS 26(Tahoe) 이상을 대상으로 하며, P16KT에서 확인한 USB/HID profile이 필요합니다. 다른 ZEUSLAP 모델의 호환성은 확인되지 않았습니다. 기본 언어는 영어이며 설정에서 한국어로 바꿀 수 있습니다.
 
 ## 설치
 
