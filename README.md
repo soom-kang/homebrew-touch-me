@@ -8,6 +8,8 @@ Touch Me is a menu bar app that helps you use ZEUSLAP touchscreen input properly
 
 The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later and requires the USB/HID profile verified on the P16KT. Compatibility with other ZEUSLAP models has not been verified. The app starts in English, with Korean available in settings.
 
+Beta.3 resumes mapping after a confirmed lock/unlock interruption and reduces device-discovery delays. The saved panel, USB location, display and permissions must still match. See the [release notes](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.3) for changes and validation limits.
+
 ## Install
 
 If you already installed `/Applications/Touch Me.app` manually, turn off **Launch at login**, select **Stop mapping**, confirm the device mode was restored, then **Quit** normally. Preserve the old app outside Applications before continuing. Keep its saved preferences; do not force an overwrite.
@@ -16,7 +18,7 @@ If you already installed `/Applications/Touch Me.app` manually, turn off **Launc
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-Release `0.8.0-beta.2` uses ad hoc signing without a Developer ID signature or Apple notarization. Verify the [release source and checksum](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.2) before first launch. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
+Release `0.8.0-beta.3` uses ad hoc signing without a Developer ID signature or Apple notarization. Verify the [release source and checksum](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.3) before first launch. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
 Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. Updates may require renewed approval; check both permissions before mapping. The Cask does not grant permissions or remove quarantine.
 
