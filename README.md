@@ -8,7 +8,9 @@ Touch Me is a menu bar app that helps you use ZEUSLAP touchscreen input properly
 
 The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later and requires the USB/HID profile verified on the P16KT. Compatibility with other ZEUSLAP models has not been verified. The app starts in English, with Korean available in settings.
 
-Beta.4 cancels a pending click when a second finger arrives before dragging starts. One-finger taps click on lift, and moving more than 8 screen-coordinate units starts a drag. An active drag follows the first finger; lift all fingers before switching gestures or starting again after scrolling. See the [release notes](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.4) for changes and validation limits.
+Beta.5 records the original device mode before changing it. After an abnormal exit, recovery requires the same continuously attached device in the same boot session and a safely verified previous owner. Changed attachments or invalid records block mapping without a guessed reset.
+
+A second finger arriving before dragging starts cancels the pending click. One-finger taps click on lift, and moving more than 8 screen-coordinate units starts a drag. An active drag follows the first finger; lift all fingers before switching gestures or starting again after scrolling. See the [release notes](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.5) for changes and validation limits.
 
 ## Install
 
@@ -18,13 +20,13 @@ If you already installed `/Applications/Touch Me.app` manually, turn off **Launc
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-Release `0.8.0-beta.4` uses ad hoc signing without a Developer ID signature or Apple notarization. Verify the [release source and checksum](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.4) before first launch. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
+Release `0.8.0-beta.5` uses ad hoc signing without a Developer ID signature or Apple notarization. Verify the [release source and checksum](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.5) before first launch. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
 Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. Updates may require renewed approval; check both permissions before mapping. The Cask does not grant permissions or remove quarantine.
 
 ## Update or remove
 
-Before either operation, select **Stop mapping**, confirm device-mode restoration, then **Quit** normally. If restoration fails, stop the operation, reconnect the P16KT to the same USB port and retry Stop. Do not continue until restoration succeeds.
+Before either operation, select **Stop mapping**, confirm device-mode restoration, then **Quit** normally. If restoration fails, stop the operation, keep the current connection and use **Retry restore**. Reconnecting to the same USB port does not authorize restoration of a changed attachment. Do not continue until this process's pending restoration succeeds.
 
 ```bash
 brew update
