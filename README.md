@@ -10,11 +10,11 @@ The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later an
 
 ## Beta.10 publication — 2026-10-14
 
-The [beta.10 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.10) is **PUBLISHED** at 2026-10-14 01:14:28 KST / 2026-10-13 16:14:28 UTC. Source `main` and tag `v0.8.0-beta.10` resolve to `8aaebe4530ece3e0b6309c3be0df3c2d57e4d07f`; the annotated tag object is `51db567d54bd80987d5375a91e55cd80ba7f0f50`.
+The [beta.10 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.10) is **PUBLISHED** at 2026-10-14 01:14:28 KST / 2026-10-13 16:14:28 UTC. At publication, source `main` and tag `v0.8.0-beta.10` resolved to `8aaebe4530ece3e0b6309c3be0df3c2d57e4d07f`; the annotated tag object is `51db567d54bd80987d5375a91e55cd80ba7f0f50`.
 
 One native app build and one DMG packaging run produced the fixed-certificate-signed `0.8.0-beta.10` release, build 28. Native app verification is **NATIVE_APP_PASS**: strict signature, exact certificate and bidirectional designated requirements match beta.9, while the code hash differs.
 
-Anonymous public downloads of the DMG and checksum sidecar matched the frozen candidate in complete bytes, size and digest: **PUBLIC_DOWNLOAD_PASS**. The combined public-byte and source/tag verification record is **PUBLIC_BYTE_AND_TAG_PASS**. This Cask contains the verified public DMG checksum. Beta.10 installation remains **NOT_RUN**.
+Anonymous public downloads of the DMG and checksum sidecar matched the frozen candidate in complete bytes, size and digest: **PUBLIC_DOWNLOAD_PASS**. The combined public-byte and source/tag verification record is **PUBLIC_BYTE_AND_TAG_PASS**. This Cask contains the verified public DMG checksum.
 
 | Public beta.10 release | Verified value |
 | --- | --- |
@@ -24,7 +24,21 @@ Anonymous public downloads of the DMG and checksum sidecar matched the frozen ca
 | Signing certificate SHA-1 | `e7491a0b49d0784093d48b2bb30b298df3a924f9` |
 | Signing certificate SHA-256 | `f58a3ca4f6dcfda8f04192c5170288b3a5ffb286acbcae147ead120892002819` |
 
-The ad hoc beta.8 → certificate-signed beta.9 transition is complete. The installed beta.9 A baseline has both **Input Monitoring: Allowed** and **Accessibility: Allowed** in the app's own GUI, confirmed by the user (**USER_REPORTED**). After normal Quit, a native process check found no Touch Me process. This establishes the A baseline; the public beta.9 A → beta.10 B Homebrew upgrade and permission-retention test remain **NOT_RUN**. Beta.10 GUI/device behavior, Gatekeeper and use on a Mac without the signing identity or added certificate trust are also **NOT_RUN**.
+The ad hoc beta.8 → certificate-signed beta.9 transition is complete. The installed beta.9 A baseline has both **Input Monitoring: Allowed** and **Accessibility: Allowed** in the app's own GUI, confirmed by the user (**USER_REPORTED**). After normal Quit, a native process check found no Touch Me process.
+
+### Beta.9 → beta.10 upgrade checkpoint
+
+One normal named Homebrew upgrade completed with exit 0 at 2026-10-14 01:19:31 KST / 2026-10-13 16:19:31 UTC. The upgrade and installed-artifact checks are **PASS**:
+
+| Check | Verified result |
+| --- | --- |
+| Outer app folder | Device `16777232` and inode `109845586` preserved |
+| Installed beta.10/build 28 | All five bundle files match the public candidate; strict signature, designated requirement and Homebrew receipt passed |
+| Preferences and recovery | Unchanged from A9, including five archived records |
+| Trust scope | Selected Cask trusted; whole Tap untrusted; unchanged |
+| New beta.10 process | PID `60924`, exact installed public executable path and SHA-256 verified |
+
+At the Cask publication checkpoint, the Tap was pushed and the installed Tap advanced by fast-forward to `27fd12ee7e39ec383919fd5333120afc55768ea4`. The user confirmed **beta.10/build 28, Input Monitoring: Allowed, Accessibility: Allowed** without privacy reapproval during A9 → B10: **PASS_USER_REPORTED_ON_THIS_MAC**. Native checks after the report confirmed the same PID `60924`, installed public executable path and SHA-256; preferences and recovery records remained unchanged. CUA GUI observation was unavailable, so the displayed permission flags are user-reported. This result applies to the tested Mac, user account and app path. Mapping was not started; device mapping, Gatekeeper and use on a Mac without the signing identity or added certificate trust remain **NOT_RUN**.
 
 Beta.10 Cask Ruby syntax passed. Equivalent Homebrew style rules passed with one file and no offenses using installed compatible `spoom 1.8.9` through a process-only `-I` load path, without additional cop exclusions, gem installation or configuration/trust writes. The known bundle mismatch with missing `spoom 1.8.10` remains; this does not establish the exact locked toolchain.
 
@@ -93,13 +107,13 @@ brew install --cask soom-kang/touch-me/touch-me
 
 The beta.10 release uses the same fixed maintainer certificate as beta.9, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
-Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. The first migration from ad hoc signing may require manual reapproval; keep permissions that remain allowed. Check both before mapping. Retention across signed beta.9 → beta.10 is still `NOT_RUN`; the Cask does not grant permissions or change certificate trust.
+Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. The first migration from ad hoc signing may require manual reapproval; keep permissions that remain allowed. Check both before mapping. Signed beta.9 → beta.10 retained both Allowed flags without reapproval on the tested Mac, user account and app path (**PASS_USER_REPORTED_ON_THIS_MAC**). The Cask does not grant permissions or change certificate trust.
 
 ## Update or remove
 
 Before either operation, select **Stop mapping**, complete pending restoration or record handling, then **Quit** normally. If either fails, stop the operation and use **Retry restore**. Keep recovery records; do not delete them to complete an upgrade or removal. Reconnecting to the same USB port does not authorize writing the old mode to a new connection.
 
-For an upgrade, check **App Management** for the application that will run `brew`. Homebrew can preserve the outer app folder when it has that access; deleting and reinstalling the folder can lose permission metadata. Use a normal named upgrade. The agreed beta.9 → beta.10 test will check the newly running app without another privacy reapproval. [Homebrew FAQ](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade)
+For an upgrade, check **App Management** for the application that will run `brew`. Homebrew can preserve the outer app folder when it has that access; deleting and reinstalling the folder can lose permission metadata. Use a normal named upgrade, then check both permission flags in the newly running app. The beta.9 → beta.10 result above applies to the tested Mac, user account and app path. [Homebrew FAQ](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade)
 
 ```bash
 brew update
