@@ -8,6 +8,30 @@ Touch Me는 Mac에서 ZEUSLAP 터치 모니터의 입력을 제대로 활용하�
 
 현재 beta는 Apple Silicon Mac과 macOS 26(Tahoe) 이상을 대상으로 하며, P16KT에서 확인한 USB/HID profile이 필요합니다. 다른 ZEUSLAP 모델의 호환성은 확인되지 않았습니다. 기본 언어는 영어이며 설정에서 한국어로 바꿀 수 있습니다.
 
+## Beta.9 공개 — 2026-10-14
+
+[Beta.9 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.9)의 상태는 **PUBLISHED**이며, 공개 시각은 2026-10-14 00:17:31 KST / 2026-10-13 15:17:31 UTC입니다. Source `main`과 tag `v0.8.0-beta.9`가 가리키는 commit은 `0414617c860451e0c7b2200294b0eeca651f9ad9`입니다.
+
+Native 앱과 DMG를 각각 한 번 생성해 고정한 maintainer 인증서로 서명한 build 27을 만들었고 산출물 검증을 통과했습니다. 익명으로 받은 public DMG와 checksum sidecar는 동결한 후보와 전체 bytes, 크기와 digest가 일치해 **PUBLIC_DOWNLOAD_PASS**입니다. 확인한 DMG checksum을 이 Cask에 반영했습니다. 이전 release, asset과 tag reference의 기록된 식별은 유지합니다.
+
+| 공개 beta.9 release | 확인한 값 |
+| --- | --- |
+| Version / build | `0.8.0-beta.9` / 27 |
+| DMG | `touch-me-0.8.0-beta.9-arm64.dmg`, 525,433 bytes |
+| DMG SHA-256 | `1ef60494e4191437493f3941dba096fcc514d916b28f8380c6a71e1a579b27db` |
+| Signing certificate SHA-1 | `e7491a0b49d0784093d48b2bb30b298df3a924f9` |
+| Signing certificate SHA-256 | `f58a3ca4f6dcfda8f04192c5170288b3a5ffb286acbcae147ead120892002819` |
+
+합의한 검증 경로는 같은 인증서와 앱 target을 사용한 공개 signed beta.9 A → beta.10 B의 정상 Homebrew upgrade입니다. Ad hoc beta.8에서 처음 전환할 때는 개인정보 보호 권한을 수동으로 다시 허용해야 할 수 있습니다. Beta.9 설치, Homebrew upgrade, GUI·실기기 동작, Gatekeeper, 서명 identity나 추가 인증서 신뢰가 없는 Mac에서의 사용과 signed A → B 권한 유지 검증은 **NOT_RUN**입니다. Public 산출물 검증만으로 성공을 판단하지 않습니다. 이 개인 Tap의 시험 배포는 Developer ID 서명이나 Apple 공증을 제공하지 않습니다.
+
+실제 beta.9 Cask의 Ruby syntax는 PASS입니다. 설치된 호환 `spoom 1.8.9`를 process-only `-I` 경로로 불러와 동등한 Homebrew style 규칙 검사를 통과했습니다. 검사한 파일은 1개이며 offenses는 없었습니다. 추가 cop 제외나 gem 설치는 없었고 설정 파일과 trust 저장소는 수정하지 않았습니다. Bundle이 참조하는 `spoom 1.8.10`이 없어 최초 실행은 exit 2로 중단됐으며, 두 실행 기록과 불일치 내용을 로그에 보존했습니다. Lockfile의 정확한 toolchain을 검증한 결과는 아닙니다.
+
+Cask에는 권한 부여, 인증서 신뢰 변경이나 quarantine 제거 hook이 없습니다. 선택한 Cask의 trust 범위를 유지합니다. 일반 online audit는 기존 보류에 따라 **BLOCKED**입니다. Audit를 실행하려고 developer mode를 켜거나 gem, trust 설정을 바꾸지 않습니다.
+
+## Beta.8 공개 기록 — 2026-10-12
+
+아래 내용은 beta.8 공개 checkpoint를 보존한 기록입니다. 산출물과 acceptance 결과를 beta.9 release의 검증으로 취급하지 않습니다.
+
 Beta.8/build 26에는 QA 수정 두 건이 포함됩니다.
 
 - **TMQA-006:** Active recovery record가 없어도 Retry와 Start는 directory sync를 확인합니다. Sync 오류나 새 기록이 있으면 Start를 차단하며 기록 형식과 장치 feature I/O는 유지합니다.
@@ -17,7 +41,7 @@ Beta.7에서 추가한 USB-C 재연결 처리는 유지합니다. 앱을 계속 
 
 이전 기록은 같은 boot에서 기록된 HID/USB service가 모두 종료됐고 소유권이 확인된 경우에만 archive로 보존합니다. Archive는 원래 모드 복구를 확인한 결과가 아니며 그 값을 새 연결에 쓰도록 허용하지 않습니다. 불확실한 기록은 매핑을 차단하므로 보존한 채 **복구 재시도**를 사용하세요.
 
-이 Tap은 검증한 [beta.8 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.8), build 26을 배포합니다. Source/tag 식별과 익명으로 받은 public DMG/checksum sidecar의 bytes, 크기와 digest가 동결한 후보와 일치합니다. 실제 Cask Ruby syntax와 동등한 Homebrew style 규칙 검사는 통과했습니다. Tap 폴더에서 실행한 style 검사는 파일 한 개에서 offenses가 없었으며 실제 Cask는 초안 header 주석 두 줄을 제외한 source 본문과 일치합니다.
+당시 이 Tap은 검증한 [beta.8 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.8), build 26을 배포했습니다. Source/tag 식별과 익명으로 받은 public DMG/checksum sidecar의 bytes, 크기와 digest가 동결한 후보와 일치했습니다. 실제 Cask Ruby syntax와 동등한 Homebrew style 규칙 검사는 통과했습니다. Tap 폴더에서 실행한 style 검사는 파일 한 개에서 offenses가 없었으며 실제 Cask는 초안 header 주석 두 줄을 제외한 source 본문과 일치했습니다.
 
 | 공개 release 식별 | 확인한 값 |
 | --- | --- |
@@ -37,19 +61,23 @@ Runtime/test source가 유지돼 Swift tests 38개와 packaging tests 22개의 P
 
 ## 설치
 
+이 Cask는 검증한 public beta.9 prerelease를 대상으로 합니다. 설치나 업데이트 전에 로컬 Cask의 버전이 `0.8.0-beta.9`인지, 해당 버전의 release URL과 위 표의 SHA-256을 사용하는지 확인하세요. Public 산출물 검증은 로컬 설치나 upgrade 성공의 근거가 되지 않습니다.
+
 `/Applications/Touch Me.app`을 수동으로 설치했다면 **로그인 시작**을 끄고 **매핑 중지**를 선택하세요. 대기 중인 복구나 기록 처리를 완료한 뒤 정상 **종료**합니다. 기존 앱을 Applications 밖에 보존한 다음 설치를 진행하세요. 저장한 환경설정과 recovery record는 유지하고 강제로 덮어쓰지 않습니다.
 
 ```bash
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-`0.8.0-beta.8`은 Developer ID 서명과 Apple 공증 없이 ad hoc 서명을 사용합니다. 첫 실행 전에 [release source와 checksum](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.8)을 확인하세요. macOS가 실행을 차단할 수 있습니다. 승인 경로가 제공되면 **시스템 설정 → 개인정보 보호 및 보안 → 확인 없이 열기**에서 [Apple의 수동 승인 절차](https://support.apple.com/en-us/102445)를 따릅니다. 손상·악성 소프트웨어 경고나 관리 정책이 있다면 원인을 확인해야 합니다. 승인과 실행을 보장하지 않습니다.
+Beta.9 release는 고정한 maintainer 인증서로 서명했으며 Developer ID나 Apple 공증을 제공하지 않습니다. 첫 실행 전에 공개한 정확한 버전의 source와 checksum을 확인하세요. macOS가 실행을 차단할 수 있습니다. 승인 경로가 제공되면 **시스템 설정 → 개인정보 보호 및 보안 → 확인 없이 열기**에서 [Apple의 수동 승인 절차](https://support.apple.com/en-us/102445)를 따릅니다. 손상·악성 소프트웨어 경고나 관리 정책이 있다면 원인을 확인해야 합니다. 승인과 실행을 보장하지 않습니다.
 
-시스템 설정에서 **입력 모니터링**과 **손쉬운 사용**을 허용한 뒤 앱을 새로 고침하세요. 업데이트 후에는 재승인이 필요할 수 있으므로 매핑 전에 두 권한을 확인합니다. Cask는 권한을 부여하거나 quarantine을 해제하지 않습니다.
+시스템 설정에서 **입력 모니터링**과 **손쉬운 사용**을 허용한 뒤 앱을 새로 고침하세요. Ad hoc 서명에서 처음 전환할 때는 수동 재승인이 필요할 수 있습니다. 이미 허용된 권한은 유지하고 매핑 전에 두 권한을 확인하세요. Signed beta.9 → beta.10의 권한 유지 검증은 아직 `NOT_RUN`입니다. Cask는 권한을 부여하거나 인증서 신뢰 설정을 바꾸지 않습니다.
 
 ## 업데이트·제거
 
 두 작업 모두 **매핑 중지**, 대기 중인 복구나 기록 처리 완료, 정상 **종료** 순서로 준비합니다. 복구나 기록 처리가 실패하면 작업을 중단하고 **복구 재시도**를 누르세요. Recovery record는 보존하며 업그레이드나 제거를 진행하기 위해 삭제하지 않습니다. 같은 USB 포트에 다시 연결해도 이전 모드를 새 연결에 쓰도록 허용하지 않습니다.
+
+업데이트 전에 `brew`를 실행할 앱의 **앱 관리(App Management)** 권한을 확인하세요. 이 권한이 있으면 Homebrew가 바깥 앱 폴더를 유지할 수 있습니다. 폴더를 삭제한 뒤 다시 설치하면 권한 정보가 사라질 수 있습니다. 이름을 지정한 정상 upgrade를 사용합니다. 합의한 beta.9 → beta.10 시험에서는 개인정보 보호 권한을 다시 허용하지 않고 새로 실행한 앱을 확인합니다. [Homebrew FAQ](https://docs.brew.sh/FAQ#why-do-my-cask-apps-lose-their-dock-position--launchpad-position--permission-settings-when-i-run-brew-upgrade)
 
 ```bash
 brew update
