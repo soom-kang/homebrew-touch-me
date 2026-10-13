@@ -8,11 +8,33 @@ Touch Me is a menu bar app that helps you use ZEUSLAP touchscreen input properly
 
 The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later and requires the USB/HID profile verified on the P16KT. Compatibility with other ZEUSLAP models has not been verified. The app starts in English, with Korean available in settings.
 
-## Beta.9 publication — 2026-10-14
+## Beta.10 publication — 2026-10-14
 
-The [beta.9 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.9) is **PUBLISHED** at 2026-10-14 00:17:31 KST / 2026-10-13 15:17:31 UTC. Source `main` and tag `v0.8.0-beta.9` resolve to `0414617c860451e0c7b2200294b0eeca651f9ad9`.
+The [beta.10 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.10) is **PUBLISHED** at 2026-10-14 01:14:28 KST / 2026-10-13 16:14:28 UTC. Source `main` and tag `v0.8.0-beta.10` resolve to `8aaebe4530ece3e0b6309c3be0df3c2d57e4d07f`; the annotated tag object is `51db567d54bd80987d5375a91e55cd80ba7f0f50`.
 
-One native app build and one DMG packaging run produced build 27 with the fixed maintainer certificate. Native artifact verification passed. Anonymous public downloads of the DMG and checksum sidecar matched the frozen candidate in complete bytes, size and digest: **PUBLIC_DOWNLOAD_PASS**. This Cask contains the verified DMG checksum. Earlier releases, assets and tag references retain their recorded identities.
+One native app build and one DMG packaging run produced the fixed-certificate-signed `0.8.0-beta.10` release, build 28. Native app verification is **NATIVE_APP_PASS**: strict signature, exact certificate and bidirectional designated requirements match beta.9, while the code hash differs.
+
+Anonymous public downloads of the DMG and checksum sidecar matched the frozen candidate in complete bytes, size and digest: **PUBLIC_DOWNLOAD_PASS**. The combined public-byte and source/tag verification record is **PUBLIC_BYTE_AND_TAG_PASS**. This Cask contains the verified public DMG checksum. Beta.10 installation remains **NOT_RUN**.
+
+| Public beta.10 release | Verified value |
+| --- | --- |
+| Version / build | `0.8.0-beta.10` / 28 |
+| DMG | `touch-me-0.8.0-beta.10-arm64.dmg`, 525,357 bytes |
+| DMG SHA-256 | `106e1738dd514f5f1ee32c912b07dea721f84cf37a8965f5474f511492d2121b` |
+| Signing certificate SHA-1 | `e7491a0b49d0784093d48b2bb30b298df3a924f9` |
+| Signing certificate SHA-256 | `f58a3ca4f6dcfda8f04192c5170288b3a5ffb286acbcae147ead120892002819` |
+
+The ad hoc beta.8 → certificate-signed beta.9 transition is complete. The installed beta.9 A baseline has both **Input Monitoring: Allowed** and **Accessibility: Allowed** in the app's own GUI, confirmed by the user (**USER_REPORTED**). After normal Quit, a native process check found no Touch Me process. This establishes the A baseline; the public beta.9 A → beta.10 B Homebrew upgrade and permission-retention test remain **NOT_RUN**. Beta.10 GUI/device behavior, Gatekeeper and use on a Mac without the signing identity or added certificate trust are also **NOT_RUN**.
+
+Beta.10 Cask Ruby syntax passed. Equivalent Homebrew style rules passed with one file and no offenses using installed compatible `spoom 1.8.9` through a process-only `-I` load path, without additional cop exclusions, gem installation or configuration/trust writes. The known bundle mismatch with missing `spoom 1.8.10` remains; this does not establish the exact locked toolchain.
+
+This experimental personal Tap does not provide Developer ID signing or Apple notarization. The Cask has no permission-grant, certificate-trust or quarantine-removal hook. Keep its selected-Cask trust scope unchanged. The ordinary online audit remains **BLOCKED** under the existing deferral.
+
+## Historical beta.9 publication — 2026-10-14
+
+The [beta.9 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.9) was **PUBLISHED** at 2026-10-14 00:17:31 KST / 2026-10-13 15:17:31 UTC. At that checkpoint, source `main` and tag `v0.8.0-beta.9` resolved to `0414617c860451e0c7b2200294b0eeca651f9ad9`.
+
+One native app build and one DMG packaging run produced build 27 with the fixed maintainer certificate. Native artifact verification passed. Anonymous public downloads of the DMG and checksum sidecar matched the frozen candidate in complete bytes, size and digest: **PUBLIC_DOWNLOAD_PASS**. The beta.9 Cask contained the verified DMG checksum. Earlier releases, assets and tag references retained their recorded identities.
 
 | Public beta.9 release | Verified value |
 | --- | --- |
@@ -22,7 +44,7 @@ One native app build and one DMG packaging run produced build 27 with the fixed 
 | Signing certificate SHA-1 | `e7491a0b49d0784093d48b2bb30b298df3a924f9` |
 | Signing certificate SHA-256 | `f58a3ca4f6dcfda8f04192c5170288b3a5ffb286acbcae147ead120892002819` |
 
-The agreed acceptance route is public signed beta.9 A → beta.10 B through normal Homebrew upgrades with the same certificate and app target. The first transition from ad hoc beta.8 may require manual privacy reapproval. Beta.9 installation, Homebrew upgrade, GUI/device behavior, Gatekeeper, use on a Mac without the signing identity or added certificate trust, and the signed A → B permission-retention test are **NOT_RUN**. Public artifact verification does not establish those results. This experimental personal Tap does not provide Developer ID signing or Apple notarization.
+The agreed acceptance route is public signed beta.9 A → beta.10 B through normal Homebrew upgrades with the same certificate and app target. The first transition from ad hoc beta.8 may require manual privacy reapproval. At publication, beta.9 installation, Homebrew upgrade, GUI/device behavior, Gatekeeper, use on a Mac without the signing identity or added certificate trust, and the signed A → B permission-retention test were **NOT_RUN**. The later user-confirmed A baseline is recorded above. Public artifact verification does not establish those acceptance results. This experimental personal Tap does not provide Developer ID signing or Apple notarization.
 
 Actual beta.9 Cask syntax passed. Equivalent Homebrew style rules passed with one file and no offenses using installed compatible `spoom 1.8.9` through a process-only `-I` load path, without additional cop exclusions, gem installation or configuration/trust writes. The first attempt stopped with exit 2 because the bundle expected missing `spoom 1.8.10`; the mismatch and both attempts remain in the run logs. This does not establish the exact locked toolchain.
 
@@ -61,7 +83,7 @@ A second finger arriving before dragging starts cancels the pending click. One-f
 
 ## Install
 
-This Cask targets the verified public beta.9 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.9`, its versioned release URL and the SHA-256 shown above. Public artifact verification does not establish local installation or upgrade success.
+This Cask targets the verified public beta.10 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.10`, its versioned release URL and the SHA-256 shown above. Public artifact verification does not establish local installation or upgrade success.
 
 If you already installed `/Applications/Touch Me.app` manually, turn off **Launch at login**, select **Stop mapping**, complete any pending restoration or record handling, then **Quit** normally. Preserve the old app outside Applications before continuing. Keep its saved preferences and recovery records; do not force an overwrite.
 
@@ -69,7 +91,7 @@ If you already installed `/Applications/Touch Me.app` manually, turn off **Launc
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-The beta.9 release uses the fixed maintainer certificate, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
+The beta.10 release uses the same fixed maintainer certificate as beta.9, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
 Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. The first migration from ad hoc signing may require manual reapproval; keep permissions that remain allowed. Check both before mapping. Retention across signed beta.9 → beta.10 is still `NOT_RUN`; the Cask does not grant permissions or change certificate trust.
 
