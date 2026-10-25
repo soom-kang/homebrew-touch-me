@@ -8,6 +8,34 @@ Touch Me는 Mac에서 ZEUSLAP 터치 모니터의 입력을 제대로 활용하�
 
 현재 beta는 Apple Silicon Mac과 macOS 26(Tahoe) 이상을 대상으로 하며, P16KT에서 확인한 USB/HID profile이 필요합니다. 다른 ZEUSLAP 모델의 호환성은 확인되지 않았습니다. 기본 언어는 영어이며 설정에서 한국어로 바꿀 수 있습니다.
 
+## Beta.11 공개 — 2026-10-25
+
+[Beta.11/build 33](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.11)을
+14:06:01 KST / 05:06:01 UTC에 공개했습니다. 이 Cask는 해당 release를 대상으로 하며,
+익명으로 다운로드한 DMG·checksum은 검사한 후보와 byte 단위로 일치합니다.
+
+- 두 손가락을 벌리거나 오므려 앱 콘텐츠를 확대·축소합니다. macOS 26에서 이벤트 형식 검사를 통과해야 사용할 수 있습니다.
+- 세 손가락을 위로 밀면 Mission Control, 왼쪽으로 밀면 다음 Space, 오른쪽으로 밀면 이전 Space로 전환합니다. 기본 Control+↑/←/→ 단축키를 켜고 각 동작 사이에 손가락을 모두 떼세요.
+- 기존 클릭·드래그·두 손가락 스크롤은 유지합니다.
+
+| 산출물 | 확인한 값 |
+| --- | --- |
+| Source commit | `0de6e5aa58aa764de360aca8f4a3cd7fb084215b` |
+| DMG | `touch-me-0.8.0-beta.11-arm64.dmg`, 541,100 bytes |
+| SHA-256 | `5622ef33e815bea8db43069138491172adf71efe0667f79e9ed08c2ac6adb91d` |
+
+새 release 번들·DMG와 Cask Ruby 문법 검사를 통과했습니다. 기존에 설치된 호환 gem으로
+현재 Homebrew style 규칙도 통과했습니다(파일 1개, 위반 없음). 잠금 파일의 정확한
+toolchain으로 실행한 결과는 아닙니다. 실행 코드가 유지돼 Swift 테스트 49개와
+개발 build 32의 P16KT 사용자 실기 확인을 재사용하며, DMG 안내 수정 후 패키징
+테스트 26개가 통과했습니다. Build 33의 GUI·실기기, 설치·upgrade와 최초 Gatekeeper는
+**NOT_RUN**입니다. Online audit는 기존 신뢰 설정 보존 합의에 따라 **BLOCKED**입니다.
+이번 공개 시점의 선택 Cask·전체 Tap trust는 모두 false이며, 설치된 Tap과 build 28을
+보존했습니다. Trust 변경이나 로컬 upgrade는 하지 않았습니다.
+[Beta.11 검증 기록](https://github.com/soom-kang/touch-me/blob/main/docs/releases/v0.8.0-beta.11.md)을 확인하세요.
+
+아래의 이전 공개·upgrade 결과는 당시의 검증 기록입니다.
+
 ## Beta.10 공개 — 2026-10-14
 
 [Beta.10 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.10)의 상태는 **PUBLISHED**이며, 공개 시각은 2026-10-14 01:14:28 KST / 2026-10-13 16:14:28 UTC입니다. 공개 당시 source `main`과 tag `v0.8.0-beta.10`가 가리킨 commit은 `8aaebe4530ece3e0b6309c3be0df3c2d57e4d07f`이며 annotated tag object는 `51db567d54bd80987d5375a91e55cd80ba7f0f50`입니다.
@@ -97,7 +125,7 @@ Runtime/test source가 유지돼 Swift tests 38개와 packaging tests 22개의 P
 
 ## 설치
 
-이 Cask는 검증한 public beta.10 prerelease를 대상으로 합니다. 설치나 업데이트 전에 로컬 Cask의 버전이 `0.8.0-beta.10`인지, 해당 버전의 release URL과 위 표의 SHA-256을 사용하는지 확인하세요. Public 산출물 검증은 로컬 설치나 upgrade 성공의 근거가 되지 않습니다.
+이 Cask는 검증한 public beta.11 prerelease를 대상으로 합니다. 설치나 업데이트 전에 로컬 Cask의 버전이 `0.8.0-beta.11`인지, 해당 버전의 release URL과 beta.11 표의 SHA-256을 사용하는지 확인하세요. Public 산출물 검증은 로컬 설치나 upgrade 성공의 근거가 되지 않습니다.
 
 `/Applications/Touch Me.app`을 수동으로 설치했다면 **로그인 시작**을 끄고 **매핑 중지**를 선택하세요. 대기 중인 복구나 기록 처리를 완료한 뒤 정상 **종료**합니다. 기존 앱을 Applications 밖에 보존한 다음 설치를 진행하세요. 저장한 환경설정과 recovery record는 유지하고 강제로 덮어쓰지 않습니다.
 
@@ -105,7 +133,7 @@ Runtime/test source가 유지돼 Swift tests 38개와 packaging tests 22개의 P
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-Beta.10 release는 beta.9와 같은 고정 maintainer 인증서로 서명했으며 Developer ID나 Apple 공증을 제공하지 않습니다. 첫 실행 전에 공개한 정확한 버전의 source와 checksum을 확인하세요. macOS가 실행을 차단할 수 있습니다. 승인 경로가 제공되면 **시스템 설정 → 개인정보 보호 및 보안 → 확인 없이 열기**에서 [Apple의 수동 승인 절차](https://support.apple.com/en-us/102445)를 따릅니다. 손상·악성 소프트웨어 경고나 관리 정책이 있다면 원인을 확인해야 합니다. 승인과 실행을 보장하지 않습니다.
+Beta.11 release는 beta.9·beta.10과 같은 고정 maintainer 인증서로 서명했으며 Developer ID나 Apple 공증을 제공하지 않습니다. 첫 실행 전에 공개한 정확한 버전의 source와 checksum을 확인하세요. macOS가 실행을 차단할 수 있습니다. 승인 경로가 제공되면 **시스템 설정 → 개인정보 보호 및 보안 → 확인 없이 열기**에서 [Apple의 수동 승인 절차](https://support.apple.com/en-us/102445)를 따릅니다. 손상·악성 소프트웨어 경고나 관리 정책이 있다면 원인을 확인해야 합니다. 승인과 실행을 보장하지 않습니다.
 
 시스템 설정에서 **입력 모니터링**과 **손쉬운 사용**을 허용한 뒤 앱을 새로 고침하세요. Ad hoc 서명에서 처음 전환할 때는 수동 재승인이 필요할 수 있습니다. 이미 허용된 권한은 유지하고 매핑 전에 두 권한을 확인하세요. Signed beta.9 → beta.10 시험에서는 같은 Mac, 사용자 계정과 앱 경로에서 재승인 없이 두 권한이 허용으로 유지됐습니다(**PASS_USER_REPORTED_ON_THIS_MAC**). Cask는 권한을 부여하거나 인증서 신뢰 설정을 바꾸지 않습니다.
 

@@ -8,6 +8,35 @@ Touch Me is a menu bar app that helps you use ZEUSLAP touchscreen input properly
 
 The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later and requires the USB/HID profile verified on the P16KT. Compatibility with other ZEUSLAP models has not been verified. The app starts in English, with Korean available in settings.
 
+## Beta.11 publication — 2026-10-25
+
+[Beta.11/build 33](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.11)
+was published at 14:06:01 KST / 05:06:01 UTC. This Cask targets that release;
+anonymous public DMG and checksum bytes match the inspected candidate.
+
+- Pinch two fingers to zoom app content; requires macOS 26 and a successful event-format check.
+- Swipe three fingers up for Mission Control, left for the next Space, or right for the previous Space. Enable the default Control+Up/Left/Right shortcuts and lift all fingers between gestures.
+- Existing clicks, dragging and two-finger scrolling remain available.
+
+| Artifact | Verified value |
+| --- | --- |
+| Source commit | `0de6e5aa58aa764de360aca8f4a3cd7fb084215b` |
+| DMG | `touch-me-0.8.0-beta.11-arm64.dmg`, 541,100 bytes |
+| SHA-256 | `5622ef33e815bea8db43069138491172adf71efe0667f79e9ed08c2ac6adb91d` |
+
+Native release bundle/DMG checks and Cask Ruby syntax passed. Current Homebrew
+style rules passed with existing compatible vendored gems, not the exact locked
+toolchain (one file, no offenses). The runtime source retains 49 Swift
+checks and user-observed P16KT acceptance on development build 32; updated
+packaging instructions passed 26 tests. Build 33 GUI/device acceptance,
+installation/upgrade and fresh Gatekeeper remain **NOT_RUN**. Online audit
+remains **BLOCKED** under the existing trust-preserving deferral. At this
+publication, selected-Cask and whole-Tap trust are both false; the installed
+Tap and build 28 are preserved. No trust changes or local upgrade were made.
+See the [beta.11 verification record](https://github.com/soom-kang/touch-me/blob/main/docs/releases/v0.8.0-beta.11.md).
+
+Earlier publication and upgrade results below are historical.
+
 ## Beta.10 publication — 2026-10-14
 
 The [beta.10 prerelease](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.10) is **PUBLISHED** at 2026-10-14 01:14:28 KST / 2026-10-13 16:14:28 UTC. At publication, source `main` and tag `v0.8.0-beta.10` resolved to `8aaebe4530ece3e0b6309c3be0df3c2d57e4d07f`; the annotated tag object is `51db567d54bd80987d5375a91e55cd80ba7f0f50`.
@@ -97,7 +126,7 @@ A second finger arriving before dragging starts cancels the pending click. One-f
 
 ## Install
 
-This Cask targets the verified public beta.10 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.10`, its versioned release URL and the SHA-256 shown above. Public artifact verification does not establish local installation or upgrade success.
+This Cask targets the verified public beta.11 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.11`, its versioned release URL and the SHA-256 in the beta.11 table. Public artifact verification does not establish local installation or upgrade success.
 
 If you already installed `/Applications/Touch Me.app` manually, turn off **Launch at login**, select **Stop mapping**, complete any pending restoration or record handling, then **Quit** normally. Preserve the old app outside Applications before continuing. Keep its saved preferences and recovery records; do not force an overwrite.
 
@@ -105,7 +134,7 @@ If you already installed `/Applications/Touch Me.app` manually, turn off **Launc
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-The beta.10 release uses the same fixed maintainer certificate as beta.9, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
+The beta.11 release uses the same fixed maintainer certificate as beta.9 and beta.10, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
 Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. The first migration from ad hoc signing may require manual reapproval; keep permissions that remain allowed. Check both before mapping. Signed beta.9 → beta.10 retained both Allowed flags without reapproval on the tested Mac, user account and app path (**PASS_USER_REPORTED_ON_THIS_MAC**). The Cask does not grant permissions or change certificate trust.
 
