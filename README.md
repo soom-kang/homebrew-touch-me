@@ -8,6 +8,40 @@ Touch Me is a menu bar app that helps you use ZEUSLAP touchscreen input properly
 
 The current beta targets Apple Silicon Macs running macOS 26 (Tahoe) or later and requires the USB/HID profile verified on the P16KT. Compatibility with other ZEUSLAP models has not been verified. The app starts in English, with Korean available in settings.
 
+## Beta.12 publication — 2026-10-28
+
+[Beta.12/build 39](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.12)
+adds two-finger back/forward gestures and restores touch input after USB recovery.
+Publication: 17:01:23 KST / 08:01:23 UTC.
+Public artifact verification: **PASS** — anonymous DMG and checksum bytes, size and API digest match the inspected candidate.
+
+- In Safari and Chrome, swipe two fingers right to go back or left to go forward. Reversing a short stroke before release can cancel the transition. Requires macOS 26, a successful event-format check and macOS “Swipe between pages” enabled.
+- The browser decides whether to scroll content or navigate. Safari's CSS containment behavior can differ from Chrome's; validation compares each browser with its own physical trackpad behavior.
+- After USB reconnection, mapping consistently uses the verified digitizer contacts so an inactive mouse-emulation report cannot block fresh touches. Existing click, drag, scroll, pinch and three-finger gestures are retained.
+
+| Artifact | Verified value |
+| --- | --- |
+| Source commit | `5bf65f6753fce6942fe29e2126727332c6dd3fff` |
+| Runtime baseline | `294982a` |
+| DMG | `touch-me-0.8.0-beta.12-arm64.dmg`, 549,533 bytes |
+| SHA-256 | `da31680fdf1aa87560c99777cb75a72d78f11bbe918ccdbcc7d8b420722b5d37` |
+
+The unchanged runtime reuses 60 passing Swift tests, broad user-reported P16KT
+acceptance on development build 36 and the focused USB recovery check on build 38. These results do not establish
+physical acceptance of release build 39. Release artifact and packaging results:
+**PASS** for the native signed bundle and DMG; 26 packaging tests passed. Cask syntax/style: **PASS** (one file, no offenses) using current Homebrew rules with existing compatible vendored gems (RuboCop 1.91.0), not the exact locked toolchain or the `brew style` front-end.
+Build 39 installation, upgrade, permission retention, physical use and fresh
+Gatekeeper acceptance remain **NOT_RUN**.
+
+Online audit remains **BLOCKED** under the existing trust-preserving deferral.
+Selected-Cask trust for `soom-kang/touch-me/touch-me` is true; whole-Tap trust is false.
+Installed Tap, app, preferences and recovery records are retained. Final target
+trust comparison: **PASS**; selected-Cask trust remains true and whole-Tap trust remains false. No developer or certificate trust change
+is part of this publication. See the
+[beta.12 verification record](https://github.com/soom-kang/touch-me/blob/main/docs/releases/v0.8.0-beta.12.md).
+
+Earlier publication and upgrade results below are historical.
+
 ## Beta.11 publication — 2026-10-25
 
 [Beta.11/build 33](https://github.com/soom-kang/touch-me/releases/tag/v0.8.0-beta.11)
@@ -126,7 +160,7 @@ A second finger arriving before dragging starts cancels the pending click. One-f
 
 ## Install
 
-This Cask targets the verified public beta.11 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.11`, its versioned release URL and the SHA-256 in the beta.11 table. Public artifact verification does not establish local installation or upgrade success.
+This Cask targets the verified public beta.12 prerelease. Before installing or upgrading, confirm that your local Cask uses version `0.8.0-beta.12`, its versioned release URL and the SHA-256 in the beta.12 table. Public artifact verification does not establish local installation or upgrade success.
 
 If you already installed `/Applications/Touch Me.app` manually, turn off **Launch at login**, select **Stop mapping**, complete any pending restoration or record handling, then **Quit** normally. Preserve the old app outside Applications before continuing. Keep its saved preferences and recovery records; do not force an overwrite.
 
@@ -134,7 +168,7 @@ If you already installed `/Applications/Touch Me.app` manually, turn off **Launc
 brew install --cask soom-kang/touch-me/touch-me
 ```
 
-The beta.11 release uses the same fixed maintainer certificate as beta.9 and beta.10, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
+The beta.12 release uses the same fixed maintainer certificate as beta.9, beta.10 and beta.11, without Developer ID or Apple notarization. Before first launch, verify the source and checksum of the exact published version. macOS may block the app. When available, follow [Apple's manual approval procedure](https://support.apple.com/en-us/102445) in **System Settings → Privacy & Security → Open Anyway**. A damage/malware alert or managed policy may require investigation; approval and execution are not guaranteed.
 
 Allow **Input Monitoring** and **Accessibility** in System Settings, then refresh the app. The first migration from ad hoc signing may require manual reapproval; keep permissions that remain allowed. Check both before mapping. Signed beta.9 → beta.10 retained both Allowed flags without reapproval on the tested Mac, user account and app path (**PASS_USER_REPORTED_ON_THIS_MAC**). The Cask does not grant permissions or change certificate trust.
 
